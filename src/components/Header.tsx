@@ -19,13 +19,19 @@ const Wrapper = styled.div`
 function Header() {
   const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
 
+  const toggleClickHandler = () => {
+    const changedState = !currentTheme;
+    setCurrentTheme && setCurrentTheme(changedState);
+    localStorage.setItem("light", String(changedState));
+    return changedState;
+  };
+
   return (
     <Wrapper>
       <BackButton></BackButton>
       <ToggleButton
-        onClickFunction={() => {
-          setCurrentTheme && setCurrentTheme(!currentTheme);
-        }}
+        initialState={currentTheme}
+        onClickFunction={toggleClickHandler}
       ></ToggleButton>
     </Wrapper>
   );

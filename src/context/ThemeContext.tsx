@@ -14,7 +14,8 @@ interface IThemeProvider {
 }
 
 const ThemeStyleProvider = ({ children }: IThemeProvider) => {
-  const [currentTheme, setCurrentTheme] = useState(true);
+  const recordTheme = localStorage.getItem("light") === "false" ? false : true;
+  const [currentTheme, setCurrentTheme] = useState(recordTheme);
 
   return (
     <ThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>

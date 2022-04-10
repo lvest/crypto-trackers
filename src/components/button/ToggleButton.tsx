@@ -20,25 +20,30 @@ const Circle = styled.div`
   background-color: ${(props) => props.theme.bgColor};
   transition: all 0.2s;
 
-  &.clicked {
+  &.toLeft {
+    transform: translateX(0);
+  }
+
+  &.toRight {
     transform: translateX(3rem);
   }
 `;
 
 interface IToggleButton {
-  onClickFunction: () => void;
+  initialState: boolean;
+  onClickFunction: () => boolean;
 }
 
-function ToggleButton({ onClickFunction }: IToggleButton) {
-  const [isClicked, setIsClicked] = useState(false);
+function ToggleButton({ initialState, onClickFunction }: IToggleButton) {
+  const [isOn, setIsOn] = useState(initialState);
+
   const onClickHandler = () => {
-    setIsClicked(!isClicked);
-    onClickFunction();
+    setIsOn(onClickFunction());
   };
 
   return (
     <Wrapper onClick={onClickHandler}>
-      <Circle className={isClicked ? "clicked" : ""}></Circle>
+      <Circle className={isOn ? "toLeft" : "toRight"}></Circle>
     </Wrapper>
   );
 }
