@@ -21,7 +21,7 @@ const Circle = styled.div`
   transition: all 0.2s;
 
   &.clicked {
-    transform: translateX(calc(3rem));
+    transform: translateX(3rem);
   }
 `;
 

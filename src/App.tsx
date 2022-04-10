@@ -1,7 +1,6 @@
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
   

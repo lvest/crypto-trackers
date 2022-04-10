@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "./theme";
+import { ThemeStyleProvider } from "./context/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 const queryClient = new QueryClient();
@@ -11,9 +10,9 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeStyleProvider>
         <App />
-      </ThemeProvider>
+      </ThemeStyleProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
