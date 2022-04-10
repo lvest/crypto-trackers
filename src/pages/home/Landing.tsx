@@ -1,9 +1,9 @@
-import React from "react";
 import styled from "styled-components";
-import Title from "./Title";
+import Title from "../../components/Title";
 
 const Wrapper = styled.div`
-  padding-top: calc((${window.innerHeight}px - 250px) / 2);
+  height: calc(${window.innerHeight}px);
+  padding-top: calc((${window.innerHeight / 2}px)-200px);
   display: flex;
   flex-direction: column;
   justify-content: center;

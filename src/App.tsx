@@ -1,9 +1,7 @@
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { ThemeProvider } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { darkTheme, lightTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   
@@ -26,10 +24,8 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <ThemeProvider theme={darkTheme}>
-        <GlobalStyle />
-        <Router />
-      </ThemeProvider>
+      <GlobalStyle />
+      <Router />
     </>
   );
 }
