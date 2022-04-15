@@ -1,5 +1,7 @@
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoinInfo } from "../api";
 import { ICoin } from "../pages/home/Coins";
 
 const Wrapper = styled.li`

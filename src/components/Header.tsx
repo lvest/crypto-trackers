@@ -45,7 +45,7 @@ function Header() {
 
   const onCheckScroll = () => {
     const value = window.scrollY;
-    if (value && scrollPosition > value) {
+    if (scrollPosition > value) {
       !isShow && setIsShow(true);
     } else {
       isShow && setIsShow(false);
