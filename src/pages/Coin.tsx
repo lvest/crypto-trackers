@@ -10,69 +10,30 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
+import CoinInfo from "../components/CoinInfo";
+import Overview from "../components/Overview";
 
 const Wrapper = styled.div`
-  padding: 5% 20% 0 20%;
-  margin: 0 auto;
   width: 100%;
-`;
+  padding: 0 20%;
+  margin: 8% auto;
 
-const InfoWrapper = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
-const Img = styled.img`
-  width: 7rem;
-  height: 7rem;
-`;
-
-const MetaWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 2rem;
-`;
-
-const Title = styled.div`
-  display: flex;
-  & > h1 {
-    margin: 0 1rem;
-    font-size: 3.5rem;
+  @media screen and (max-width: 1199px) {
+    padding: 0 15%;
   }
-`;
-
-const Overview = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 20px;
-`;
-
-const OverviewItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.4rem 0.8rem;
-  border-radius: 10px;
-
-  span:first-child {
-    font-size: 10px;
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 5px;
+  @media screen and (max-width: 899px) {
+    padding: 0 10%;
   }
-`;
-
-const Description = styled.p`
-  margin: 20px 0px;
+  @media screen and (max-width: 599px) {
+    padding: 0 5%;
+  }
 `;
 
 interface RouteState {
   name: string;
 }
 
-interface InfoData {
+export interface InfoData {
   id: "string";
   name: "string";
   symbol: "string";
@@ -93,7 +54,7 @@ interface InfoData {
   last_data_at: "string";
 }
 
-interface PriceData {
+export interface PriceData {
   id: "string";
   name: "string";
   symbol: "string";
@@ -140,35 +101,14 @@ function Coin() {
     { refetchInterval: 1000 }
   );
 
-  return (
+  return infoLoading || tickersLoading ? (
+    <Wrapper>로딩중입니다</Wrapper>
+  ) : infoData && tickersData ? (
     <Wrapper>
-      <InfoWrapper>
-        <Img
-          src={`https://cryptocurrencyliveprices.com/img/${infoData?.id}.png`}
-        />
-        <MetaWrapper>
-          <Title>
-            <h1>#{infoData?.rank}</h1>
-            <h1>{infoData?.name}</h1>
-          </Title>
-          <Overview>
-            <OverviewItem>
-              <span>Symbol:</span>
-              <span>{infoData?.symbol}</span>
-            </OverviewItem>
-            <OverviewItem>
-              <span>Total Suply:</span>
-              <span>{tickersData?.total_supply}</span>
-            </OverviewItem>
-            <OverviewItem>
-              <span>Max Supply:</span>
-              <span>{tickersData?.max_supply}</span>
-            </OverviewItem>
-          </Overview>
-        </MetaWrapper>
-      </InfoWrapper>
-      <Description>{infoData?.description}</Description>
+      <CoinInfo infoData={infoData} tickersData={tickersData}></CoinInfo>
     </Wrapper>
+  ) : (
+    <Wrapper>관련 정보가 없습니다.</Wrapper>
   );
 }
 

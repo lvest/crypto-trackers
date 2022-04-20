@@ -17,6 +17,16 @@ const Wrapper = styled.div<{ headerHeight: number }>`
   z-index: 1;
   transition: transform 0.3s ease-in-out;
 
+  @media screen and (max-width: 1199px) {
+    height: 7%;
+  }
+  @media screen and (max-width: 899px) {
+    height: 5%;
+  }
+  @media screen and (max-width: 599px) {
+    height: 4%;
+  }
+
   &.show {
     transform: translateY(calc((${(props) => props.headerHeight}px)));
   }
