@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
   Link,
+  Outlet,
   Route,
   Routes,
   useLocation,
@@ -11,12 +12,15 @@ import {
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import CoinInfo from "../components/CoinInfo";
-import Overview from "../components/Overview";
+import Tabs from "../components/tab/Tabs";
 
 const Wrapper = styled.div`
-  width: 100%;
-  padding: 0 20%;
+  width: calc(${window.innerWidth}px);
+  max-width: 900px;
   margin: 8% auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 
   @media screen and (max-width: 1199px) {
     padding: 0 15%;
@@ -28,10 +32,6 @@ const Wrapper = styled.div`
     padding: 0 5%;
   }
 `;
-
-interface RouteState {
-  name: string;
-}
 
 export interface InfoData {
   id: "string";
@@ -90,15 +90,13 @@ export interface PriceData {
 
 function Coin() {
   const { coinId } = useParams();
-  const state = useLocation().state as RouteState; // react-router-dom v6 ts제네릭 지원 안 함
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
     () => fetchCoinInfo(coinId!)
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
-    () => fetchCoinPrice(coinId!),
-    { refetchInterval: 1000 }
+    () => fetchCoinPrice(coinId!)
   );
 
   return infoLoading || tickersLoading ? (
@@ -106,6 +104,8 @@ function Coin() {
   ) : infoData && tickersData ? (
     <Wrapper>
       <CoinInfo infoData={infoData} tickersData={tickersData}></CoinInfo>
+      <Tabs coinId={coinId!}></Tabs>
+      <Outlet context={[infoData, tickersData]} />
     </Wrapper>
   ) : (
     <Wrapper>관련 정보가 없습니다.</Wrapper>

@@ -61,14 +61,14 @@ const Description = styled.p`
   margin: 20px 0px;
 `;
 
-interface ICoinInfo {
+export interface ICoinInfo {
   infoData: InfoData;
   tickersData: PriceData;
 }
 
 function CoinInfo({ infoData, tickersData }: ICoinInfo) {
   return (
-    <div>
+    <section>
       <InfoWrapper>
         <img
           src={`https://cryptocurrencyliveprices.com/img/${infoData?.id}.png`}
@@ -79,7 +79,7 @@ function CoinInfo({ infoData, tickersData }: ICoinInfo) {
         </MetaWrapper>
       </InfoWrapper>
       <Description>{infoData?.description}</Description>
-    </div>
+    </section>
   );
 }
 
