@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Title from "../../components/Title";
+import Title from "../../components/title/Title";
 
 const Wrapper = styled.div`
   height: calc(${window.innerHeight}px);
@@ -19,7 +19,7 @@ function Landing() {
   return (
     <Wrapper>
       <Title />
-      <Img src="/img/down-arrow.png" />
+      <Img src={process.env.PUBLIC_URL + "/img/down-arrow.png"} />
     </Wrapper>
   );
 }

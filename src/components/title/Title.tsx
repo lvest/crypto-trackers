@@ -3,7 +3,7 @@ import TitleChar from "./TitleChar";
 
 function Title() {
   const TITLE = "CRYPTO TRACKER";
-  const SVG_WIDTH = 600;
+  const SVG_WIDTH = window.innerWidth > 1200 ? 600 : window.innerWidth * 0.8;
   const SVG_HEIGHT = "200px";
 
   return (

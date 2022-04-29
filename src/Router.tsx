@@ -7,7 +7,7 @@ import Price from "./pages/Price";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />}></Route>
