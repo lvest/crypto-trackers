@@ -1,14 +1,5 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import {
-  Link,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
-  useMatch,
-  useParams,
-} from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import CoinInfo from "../components/CoinInfo";
@@ -67,6 +58,7 @@ export interface PriceData {
   last_updated: "string";
   quotes: {
     USD: {
+      [index: string]: string | number;
       ath_date: string;
       ath_price: number;
       market_cap: number;

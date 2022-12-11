@@ -1,4 +1,3 @@
-import React from "react";
 import ApexChart from "react-apexcharts";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -34,7 +33,7 @@ function Chart() {
     {}
   );
 
-  console.log('chart', data)
+  console.log("chart", data);
 
   return isLoading ? (
     <span>로딩중입니다</span>
@@ -48,12 +47,7 @@ function Chart() {
               data: data?.map((price) => {
                 return {
                   x: price.time_close,
-                  y: [
-                    price.open,
-                    price.high,
-                    price.low,
-                    price.close,
-                  ],
+                  y: [price.open, price.high, price.low, price.close],
                 };
               }),
             },
