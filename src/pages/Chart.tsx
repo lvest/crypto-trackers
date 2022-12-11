@@ -34,6 +34,8 @@ function Chart() {
     {}
   );
 
+  console.log('chart', data)
+
   return isLoading ? (
     <span>로딩중입니다</span>
   ) : (
@@ -45,12 +47,12 @@ function Chart() {
             {
               data: data?.map((price) => {
                 return {
-                  x: price.time_close.slice(2, 10),
+                  x: price.time_close,
                   y: [
-                    price.open.toFixed(2),
-                    price.high.toFixed(2),
-                    price.low.toFixed(2),
-                    price.close.toFixed(2),
+                    price.open,
+                    price.high,
+                    price.low,
+                    price.close,
                   ],
                 };
               }),

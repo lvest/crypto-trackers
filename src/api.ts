@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = `https://api.coinpaprika.com/v1`;
+const BASE_URL_PRICE = `https://ohlcv-api.nomadcoders.workers.dev`
 
 export async function fetchCoins() {
   const res = await axios(`${BASE_URL}/coins`);
@@ -18,10 +19,8 @@ export async function fetchCoinPrice(coinId: string) {
 }
 
 export async function fetchPriceHistory(coinId: string) {
-  const endDate = Math.floor(Date.now() / 1000);
-  const startDate = endDate - 60 * 60 * 24 * 7 * 2;
   const res = await axios(
-    `${BASE_URL}/coins/${coinId}/ohlcv/historical?start=${startDate}&end=${endDate}`
+    `${BASE_URL_PRICE}?coinId=${coinId}`
   );
   return res.data;
 }
